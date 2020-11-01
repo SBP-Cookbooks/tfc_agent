@@ -28,3 +28,6 @@ suites:
       inspec_tests:
         - test/integration/default
     attributes:
+      tfc_agent:
+        name: test-kitchen
+        token: <%= ENV['TFC_AGENT_TOKEN'] %>
