@@ -1,0 +1,79 @@
+---
+driver:
+  name: vagrant
+  provider: cosmic
+  cache_directory: false
+  customize:
+    host: <%= ENV["COSMIC_HOST"] %>
+    path: /client/api
+    port: 443
+    scheme: https
+    api_key: <%= ENV['COSMIC_API_KEY'] %>
+    secret_key: <%= ENV['COSMIC_SECRET_KEY'] %>
+    affinity_group_name: <%= ENV["AFFINITY_GROUP_NAME"] || '""' %>
+    service_offering_name: <%= ENV["SERVICE_OFFERING_NAME"] %>
+    network_name: <%= ENV["NETWORK_NAME"] %>
+    zone_name: <%= ENV["ZONE_NAME"] %>
+    network_type: Advanced
+    pf_ip_address: <%= ENV["PUBLIC_SOURCE_NAT_IP"] %>
+    pf_open_firewall: false
+    pf_trusted_networks: <%= ENV["TRUSTED_NETWORKS"] %>
+    ssh_user: <%= ENV["SSH_USER"] %>
+    vm_user: <%= ENV["VM_USER"] %>
+    expunge_on_destroy: true
+
+platforms:
+  - name: centos-6
+    driver_config:
+      box: <%= ENV['CENTOS_6_TEMPLATE_NAME'] %>
+    lifecycle:
+      pre_converge:
+        - remote: sudo mount -o remount,exec /tmp
+  - name: centos-7
+    driver_config:
+      box: <%= ENV['CENTOS_7_TEMPLATE_NAME'] %>
+    lifecycle:
+      pre_converge:
+        - remote: sudo mount -o remount,exec /tmp
+  - name: centos-8
+    driver_config:
+      box: <%= ENV['CENTOS_8_TEMPLATE_NAME'] %>
+    lifecycle:
+      pre_converge:
+        - remote: sudo mount -o remount,exec /tmp
+  - name: windows-2012r2
+    driver_config:
+      box: <%= ENV['WINDOWS_2012R2_TEMPLATE_NAME'] %>
+      communicator: winrm
+      winrm:
+        retry_delay: 30
+        retry_limit: 5
+    transport:
+      name: winrm
+      elevated: true
+      elevated_username: System
+      elevated_password: null
+  - name: windows-2016
+    driver_config:
+      box: <%= ENV['WINDOWS_2016_TEMPLATE_NAME'] %>
+      communicator: winrm
+      winrm:
+        retry_delay: 30
+        retry_limit: 5
+    transport:
+      name: winrm
+      elevated: true
+      elevated_username: System
+      elevated_password: null
+  - name: windows-2019
+    driver_config:
+      box: <%= ENV['WINDOWS_2019_TEMPLATE_NAME'] %>
+      communicator: winrm
+      winrm:
+        retry_delay: 30
+        retry_limit: 5
+    transport:
+      name: winrm
+      elevated: true
+      elevated_username: System
+      elevated_password: null
