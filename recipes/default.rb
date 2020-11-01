@@ -14,3 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+docker_installation_package 'default'
+
+docker_service 'default' do
+  action [:create, :start]
+end
+
+tfc_agent node['tfc_agent']['name'] do
+  image node['tfc_agent']['image'] if node['tfc_agent']['image']
+  tag node['tfc_agent']['tag'] if node['tfc_agent']['tag']
+  token node['tfc_agent']['token']
+end
