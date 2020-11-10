@@ -35,6 +35,9 @@ jobs:
         uses: actionshub/markdownlint@1.2.0
 
   dokken:
+    # This will fail when running on master branch because there is a 10 agent
+    # limit per token and we use more than 5 in the PR tests.
+    if: github.ref != 'refs/heads/master'
     needs: [mdl, yamllint, delivery]
     runs-on: ubuntu-latest
     strategy:
