@@ -9,4 +9,8 @@ chef_version     '>= 15.0'
 issues_url 'https://github.com/SBP-Cookbooks/tfc_agent/issues'
 source_url 'https://github.com/SBP-Cookbooks/tfc_agent'
 
+supports 'centos'
+supports 'debian'
+supports 'ubuntu'
+
 depends 'docker', '~> 7.2'
