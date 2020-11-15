@@ -37,7 +37,7 @@ action :create do
 end
 
 action :start do
-  docker_container 'tfc-agent' do
+  docker_container "tfc-agent-#{new_resource.name}" do
     repo new_resource.image
     tag new_resource.tag
     env ["TFC_AGENT_NAME=#{new_resource.name}", "TFC_AGENT_TOKEN=#{new_resource.token}"]
@@ -51,7 +51,7 @@ action :run do
 end
 
 action :stop do
-  docker_container 'tfc-agent' do
+  docker_container "tfc-agent-#{new_resource.name}" do
     repo new_resource.image
     tag new_resource.tag
     env ["TFC_AGENT_NAME=#{new_resource.name}", "TFC_AGENT_TOKEN=#{new_resource.token}"]
