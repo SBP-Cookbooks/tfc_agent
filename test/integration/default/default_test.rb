@@ -3,7 +3,7 @@
 # The InSpec reference, with examples and extensive documentation, can be
 # found at https://docs.chef.io/inspec/resources/
 
-describe docker_container('tfc-agent') do
+describe docker_container('tfc-agent-test-kitchen') do
   it { should exist }
   it { should be_running }
   its('id') { should_not eq '' }
