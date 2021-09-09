@@ -13,4 +13,4 @@ supports 'centos'
 supports 'debian'
 supports 'ubuntu'
 
-depends 'docker', '~> 7.2'
+depends 'docker'
